@@ -13,8 +13,8 @@ var read = {
     },
     initReader:function(pno){
         var _this = this;
-        var height = $(window).height();
-        var width = $(window).width();
+        var height = $("body").height();
+        var width = $("body").width();
         var devicePixelRatio = window.devicePixelRatio;
 //        var art = novel.content;
         NovelCanvas.init({
