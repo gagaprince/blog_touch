@@ -136,6 +136,7 @@ gulp.task('watch_css',function(cb){
 
 gulp.task('watch_dev',function(){
     gulp.watch(['app/**/*.html'], ['html']);
+    gulp.watch(['app/**/*.tpl'], ['watch_js']);
     gulp.watch(['app/src/**/*.js'], ['watch_js']);
     gulp.watch(['app/src/**/*.less'], ['watch_css']);
 });

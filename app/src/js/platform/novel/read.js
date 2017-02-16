@@ -3,13 +3,12 @@ require('./lib/novelCanvas');
 var commonUtil = require('../../util/commonUtil');
 
 var read = {
+    novelId:140,
     init:function(){
         var _this = this;
-        var pno = 3;
+        this.novelId = commonUtil.getQueryString("novelId")||this.novelId;
+        var pno = 0;
         this.initReader(pno);
-//        this.getContentByPage(pno,function(novel){
-//            _this.initReader(novel,pno);
-//        });
     },
     initReader:function(pno){
         var _this = this;
@@ -43,15 +42,12 @@ var read = {
         });
     },
     getContentByPage:function(pno,callback){
-        commonUtil._api("/blog/pl/nv/getNovelContent",{
-            pno:pno
-        },function(code,des,data,res){
-            if(code==0){
-                if(callback){
-                    callback(data);
-                }
+        commonUtil.giveMeNovelByIdAndChapter(this.novelId,pno,function(data){
+            if(callback){
+                callback(data);
             }
         });
+
     }
 };
 

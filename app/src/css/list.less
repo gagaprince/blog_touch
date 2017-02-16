@@ -1,0 +1,85 @@
+@import "./base/base.less";
+html{
+  font-size:10px;
+}
+.header{
+  background:#1ba9ba;
+  padding:10px 0;
+  position:relative;
+  .backFrame{
+    width: 41px;
+    height: 23px;
+    position: absolute;
+    .back{
+      position:absolute;
+      margin-left:13px;
+      .bg-frame,.front-frame{
+        width:14px;
+        height:14px;
+        background:#74fcfc;
+        .origin(0,0);
+        .skew(-4deg,-4deg);
+      }
+      .front-frame{
+        background:#1ba9ba;
+        position:absolute;
+        top:2px;
+        left:2px;
+      }
+      .origin(0,0);
+      .rotate(-45deg);
+      margin-top:11px;
+      z-index:1;
+    }
+  }
+  .title{
+    margin:-1px auto;
+    color:#fff;
+    font-size:1.8rem;
+  }
+
+}
+.container{
+  width:100%;
+  .list{
+    width:100%;
+    .item{
+      height:50px;
+      position: relative;
+      padding-left: 25px;
+      .half-border({
+        left:0;
+        border-bottom:1px solid #1ba9ba;
+        z-index: 1;
+      });
+      .novel-name{
+        font-size:1.4rem;
+      }
+      .arrow-frame{
+        position:absolute;
+        width:0px;
+        height:0px;
+        top:0;
+        bottom:0;
+        right:24px;
+        margin: auto;
+        .arrow{
+          .bg-frame,.front-frame{
+            width:8px;
+            height:8px;
+            background:#999;
+            .origin(0,0);
+          }
+          .front-frame{
+            background:#fff;
+            position:absolute;
+            top:1px;
+            left:1px;
+          }
+          .origin(0,0);
+          .rotate(135deg);
+        }
+      }
+    }
+  }
+}

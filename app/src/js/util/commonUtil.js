@@ -1,3 +1,6 @@
+"use strict";
+var novelListAllUrl = '/blog/pl/nv/novelListAll';
+var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
 
 var commonUtil = {
     _api:function(url,data,callback){
@@ -18,6 +21,35 @@ var commonUtil = {
                 }
             }
         });
+    },
+    giveMeNovelListAll:function(callback){
+        this._api(novelListAllUrl,{},function(code,des,data,res){
+            if(code==0){
+                if(callback){
+                    callback(data);
+                }
+            }
+        });
+    },
+    giveMeNovelByIdAndChapter:function(novelId,chapter,callback){
+        commonUtil._api("/blog/pl/nv/getNovelContent",{
+            novelId:novelId,
+            chapter:chapter
+        },function(code,des,data,res){
+            if(code==0){
+                if(callback){
+                    callback(data);
+                }
+            }
+        });
+    },
+    getQueryString:function(name,urldefault) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var url = urldefault || window.location.search.substr(1);
+        var r = url.match(reg);
+        if (r != null)
+            return decodeURIComponent(r[2]);
+        return null;
     }
 };
 module.exports = commonUtil;
