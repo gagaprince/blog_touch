@@ -1,5 +1,6 @@
 "use strict";
 var novelListAllUrl = '/blog/pl/nv/novelListAll';
+var novelListPageUrl = '/blog/pl/nv/novelListPage';
 var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
 
 var commonUtil = {
@@ -31,8 +32,20 @@ var commonUtil = {
             }
         });
     },
+    giveMeNovelListPage:function(pno,callback){
+        this._api(novelListPageUrl,{
+            pno:pno,
+            psize:20
+        },function(code,des,data,res){
+            if(code==0){
+                if(callback){
+                    callback(data);
+                }
+            }
+        });
+    },
     giveMeNovelByIdAndChapter:function(novelId,chapter,callback){
-        commonUtil._api("/blog/pl/nv/getNovelContent",{
+        commonUtil._api(novelContentGetUrl,{
             novelId:novelId,
             chapter:chapter
         },function(code,des,data,res){

@@ -7,7 +7,7 @@ var list = {
         this.initListener();
     },
     initPage:function(){
-        commonUtil.giveMeNovelListAll(function(data){
+        commonUtil.giveMeNovelListPage(0,function(data){
             var novelList = data.novelList;
             var html = novelListRender(novelList);
             $("#novelList").html(html);
