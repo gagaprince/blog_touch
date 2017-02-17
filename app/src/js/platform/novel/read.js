@@ -27,8 +27,8 @@ var read = {
             turnType:1,
             currentArtIndex:pno,
             rect:{
-                top:10,
-                bottom:25,
+                top:20,
+                bottom:35,
                 left:20,
                 right:15
             },
