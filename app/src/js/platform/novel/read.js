@@ -35,7 +35,7 @@ var read = {
             pullData:function(currentArtIndex,onGet){
                 if(currentArtIndex>=0){
                     _this.getContentByPage(currentArtIndex,function(novel){
-                        onGet(novel.content);
+                        onGet(novel);
                     });
                 }
             }
