@@ -7,7 +7,8 @@ var read = {
     init:function(){
         var _this = this;
         this.novelId = commonUtil.getQueryString("novelId")||this.novelId;
-        var pno = 0;
+        var pno = commonUtil.getQueryString("chapter")||0;
+        pno = parseInt(pno);
         this.initReader(pno);
     },
     initReader:function(pno){

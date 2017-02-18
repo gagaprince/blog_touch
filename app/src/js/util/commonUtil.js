@@ -2,6 +2,7 @@
 var novelListAllUrl = '/blog/pl/nv/novelListAll';
 var novelListPageUrl = '/blog/pl/nv/novelListPage';
 var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
+var novelIndexListPageUrl = '/blog/pl/nv/novelIndexListPage';
 
 var commonUtil = {
     _api:function(url,data,callback){
@@ -34,6 +35,19 @@ var commonUtil = {
     },
     giveMeNovelListPage:function(pno,callback){
         this._api(novelListPageUrl,{
+            pno:pno,
+            psize:20
+        },function(code,des,data,res){
+            if(code==0){
+                if(callback){
+                    callback(data);
+                }
+            }
+        });
+    },
+    giveMeNovelIndexListPage:function(novelId,pno,callback){
+        this._api(novelIndexListPageUrl,{
+            novelId:novelId,
             pno:pno,
             psize:20
         },function(code,des,data,res){
