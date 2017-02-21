@@ -7,11 +7,22 @@ var read = {
     init:function(){
         var _this = this;
         this.novelId = commonUtil.getQueryString("novelId")||this.novelId;
-        var pno = commonUtil.getQueryString("chapter")||0;
-        pno = parseInt(pno);
-        this.initReader(pno);
+        var chapter = commonUtil.getQueryString("chapter");
+        var cpObj = commonUtil.getLocal(this.novelId)||[0,0];
+        var currentPage = 0;
+        if(chapter==null){
+            //url参数没有chapter参数 查看local中有没有
+            chapter = cpObj[0];
+            currentPage = cpObj[1];
+        }else{
+            if(chapter==cpObj[0]){
+                currentPage = cpObj[1];
+            }
+        }
+        chapter = parseInt(chapter);
+        this.initReader(chapter,currentPage);
     },
-    initReader:function(pno){
+    initReader:function(chapter,currentPage){
         var _this = this;
         var height = $("body").height();
         var width = $("body").width();
@@ -26,7 +37,8 @@ var read = {
             scale:devicePixelRatio,
             fontColor:"#123456",
             turnType:1,
-            currentArtIndex:pno,
+            currentArtIndex:chapter,
+            currentPage:currentPage,
             rect:{
                 top:20,
                 bottom:35,
@@ -39,6 +51,12 @@ var read = {
                         onGet(novel);
                     });
                 }
+            },
+            onPageTurn:function(currentChapter,pno){
+                //可以记录自动书签
+                console.log("当前章节："+currentChapter+"  当前页码："+pno);
+                var novelId = commonUtil.getQueryString("novelId");
+                commonUtil.saveLocal(novelId,currentChapter,pno);
             }
         });
     },

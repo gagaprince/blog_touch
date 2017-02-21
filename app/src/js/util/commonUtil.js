@@ -4,7 +4,10 @@ var novelListPageUrl = '/blog/pl/nv/novelListPage';
 var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
 var novelIndexListPageUrl = '/blog/pl/nv/novelIndexListPage';
 
+var NOVEL_LOCAL_KEY='blog_touch_novel_history';
+
 var commonUtil = {
+    novelHistory:null,
     _api:function(url,data,callback){
         $.ajax({
             url:url,
@@ -77,6 +80,27 @@ var commonUtil = {
         if (r != null)
             return decodeURIComponent(r[2]);
         return null;
+    },
+    initLocal:function(){
+        if(!this.novelHistory){
+            this.novelHistory = localStorage.getItem(NOVEL_LOCAL_KEY);
+            if(!this.novelHistory){
+                this.novelHistory = {
+
+                };
+            }else{
+                this.novelHistory = JSON.parse(this.novelHistory);
+            }
+        }
+    },
+    saveLocal:function(novelId,chapter,pno) {
+        this.initLocal();
+        this.novelHistory[novelId] = [chapter, pno];
+        localStorage.setItem(NOVEL_LOCAL_KEY,JSON.stringify(this.novelHistory));
+    },
+    getLocal:function(novelId){
+        this.initLocal();
+        return this.novelHistory[novelId];
     }
 };
 module.exports = commonUtil;
