@@ -1,0 +1,73 @@
+@import "./base/base.less";
+html{
+  font-size:10px;
+  background: #c9cac7;
+}
+.header{
+  background:#1ba9ba;
+  padding:10px 0;
+  position:relative;
+  .backFrame{
+    width: 41px;
+    height: 23px;
+    position: absolute;
+    .back{
+      position:absolute;
+      margin-left:13px;
+      .bg-frame,.front-frame{
+        width:14px;
+        height:14px;
+        background:#74fcfc;
+        .origin(0,0);
+        .skew(-4deg,-4deg);
+      }
+      .front-frame{
+        background:#1ba9ba;
+        position:absolute;
+        top:2px;
+        left:2px;
+      }
+      .origin(0,0);
+      .rotate(-45deg);
+      margin-top:11px;
+      z-index:1;
+    }
+  }
+  .title{
+    margin:-1px auto;
+    color:#fff;
+    font-size:1.8rem;
+  }
+
+}
+.container{
+  width:100%;
+  .bookshelf{
+    padding-top: 40px;
+    .bookshelf-item{
+      margin-top: 60px;
+      height: 70px;
+      background:url('http://chuantu.biz/t5/47/1487779686x2071708795.gif');
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      .book-frame{
+        width:33%;
+        height: 100px;
+        margin-top: -140px;
+        .book{
+          width:70px;
+          height: 90px;
+          background:#999;
+          .shadow(-5px,-5px,6px,#666);
+          border-right: 2px solid #eee;
+          border-bottom: 1px solid #666;
+          overflow: hidden;
+          img{
+            display: block;
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+}
