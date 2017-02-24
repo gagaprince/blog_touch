@@ -2,7 +2,7 @@
 var commonUtil = require('../../util/commonUtil');
 var bookshelfUtil = require('../../util/bookshelfUtil');
 var bookshelfRender = require('../../../../platform/novel/tpl/bookshelf-list.tpl');
-var defaultNum = 2;
+var defaultNum = 6;
 
 var bookShelf = {
     init:function(){
@@ -12,7 +12,7 @@ var bookShelf = {
     initPage:function(){
         var _this = this;
         this.initBookList(function(novelList){
-            _this.renderPage(novelList);
+            _this.renderPage(_this.cloneNovelList(novelList));
         });
     },
     initListener:function(){
@@ -20,6 +20,8 @@ var bookShelf = {
         $("body").on("click",".bookItem",function(){
             //查看是否有章节信息 如果有 直接跳转
             //如果没有 跳转到详情页
+            var novelId = $(this).attr("novelId");
+            window.location.href = "read.html?novelId="+novelId;
         });
         $("body").on("click",".bookAddBtn",function(){
             //跳转到列表页
@@ -50,8 +52,16 @@ var bookShelf = {
                 var novel = novelList[i];
             }
         }
+    },
+    cloneNovelList:function(novelList){
+        var novelListCp = [];
+        for(var i=0;i<novelList.length;i++){
+            var novel = novelList[i];
+            var novelCp = commonUtil.clone(novel);
+            novelListCp.push(novelCp);
+        }
+        return novelListCp;
     }
-
 };
 
 $(document).ready(function(){

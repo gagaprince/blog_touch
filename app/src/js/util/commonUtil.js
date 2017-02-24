@@ -124,6 +124,17 @@ var commonUtil = {
     getLocal:function(novelId){
         this.initLocal();
         return this.novelHistory[novelId];
+    },
+    clone:function(obj){
+        var objCp = {};
+        for(var key in obj){
+            var value = obj[key];
+            if(typeof value == "object"){
+                value = this.clone(value);
+            }
+            objCp[key]=value;
+        }
+        return objCp;
     }
 };
 module.exports = commonUtil;
