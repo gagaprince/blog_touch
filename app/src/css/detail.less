@@ -1,0 +1,145 @@
+@import "./base/base.less";
+html{
+  font-size:10px;
+}
+.header{
+  background:#1ba9ba;
+  padding:10px 0;
+  position:relative;
+  .backFrame{
+    width: 41px;
+    height: 23px;
+    position: absolute;
+    .back{
+      position:absolute;
+      margin-left:13px;
+      .bg-frame,.front-frame{
+        width:14px;
+        height:14px;
+        background:#74fcfc;
+        .origin(0,0);
+        .skew(-4deg,-4deg);
+      }
+      .front-frame{
+        background:#1ba9ba;
+        position:absolute;
+        top:2px;
+        left:2px;
+      }
+      .origin(0,0);
+      .rotate(-45deg);
+      margin-top:11px;
+      z-index:1;
+    }
+  }
+  .title{
+    margin:-1px auto;
+    color:#fff;
+    font-size:1.8rem;
+  }
+
+}
+.container{
+  width:100%;
+  .info{
+    padding-top:15px;
+    .left{
+      width:35%;
+      .imgframe{
+        width:80px;
+        background:#999;
+        .shadow(3px,3px,1px,#666);
+        border-right: 2px solid #eee;
+        border-bottom: 1px solid #666;
+        overflow: hidden;
+        img{
+          display: block;
+          width:100%;
+        }
+      }
+    }
+    .right{
+      width:60%;
+      font-size: 14px;
+      .name{
+        font-size: 16px;
+        height: 20px;
+      }
+      .info-item{
+        min-height: 20px;
+        line-height: 18px;
+        .lb{
+          color: #999;
+        }
+        .lbv{
+          width:80%;
+        }
+      }
+    }
+  }
+  .read-btn-frame{
+    margin-top: 10px;
+    .read-btn{
+      width:90%;
+      height: 40px;
+      background: #1ba9ba;
+      .bradius(5px);
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+  .desc-frame{
+    margin-top: 15px;
+    font-size: 16px;
+    .desc-t{
+      .desc-title{
+        width:90%;
+        height: 35px;
+
+      }
+      .half-border({
+        border-top: 1px solid #EBECE9;
+        border-bottom: 1px solid #EBECE9;
+      })
+    }
+    .desc-info{
+      margin-top: 10px;
+      .desc{
+        color: #999;
+        text-indent: 34px;
+        width:90%;
+        line-height: 25px;
+
+      }
+    }
+  }
+  .novel-index-frame{
+    margin-top: 15px;
+    font-size: 16px;
+    .novel-index-t{
+      .novel-index-title{
+        width:90%;
+        height: 35px;
+      }
+      .half-border({
+        border-top: 1px solid #EBECE9;
+        border-bottom: 1px solid #EBECE9;
+      })
+    }
+    .novel-index-list{
+      .novel-index-item{
+        height: 35px;
+        .novel-index-item-info{
+          font-size:14px;
+
+          width:90%;
+        }
+        .half-border({
+          border-top: 1px solid #EBECE9;
+          border-bottom: 1px solid #EBECE9;
+        });
+      }
+
+    }
+  }
+}

@@ -96,6 +96,17 @@ var commonUtil = {
             }
         });
     },
+    giveMeNovelAllById:function(id,callback){
+        if(!callback)return;
+        commonUtil._api(novelInfoByIdUrl,{
+            id:id,
+            needAll:1,
+        },function(code,des,data,res){
+            if(code==0){
+                callback(data);
+            }
+        });
+    },
     getQueryString:function(name,urldefault) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var url = urldefault || window.location.search.substr(1);

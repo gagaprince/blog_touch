@@ -21,7 +21,7 @@ var bookShelf = {
             //查看是否有章节信息 如果有 直接跳转
             //如果没有 跳转到详情页
             var novelId = $(this).attr("novelId");
-            window.location.href = "read.html?novelId="+novelId;
+            window.location.href = "detail.html?novelId="+novelId;
         });
         $("body").on("click",".bookAddBtn",function(){
             //跳转到列表页
