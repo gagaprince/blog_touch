@@ -55,7 +55,7 @@ del.sync=function(patterns, opts){
 
 gulp.task("css",function(cb){
     var cssDestPath = currentPath+'/src/css';
-    return gulp.src('app/src/css/*.less')
+    return gulp.src('app/src/css/**/*.less')
         .pipe(less())
         .pipe(gulpif(!devMode,cleanCss()))
         .pipe(rev())
