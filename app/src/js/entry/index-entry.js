@@ -1,1 +1,1 @@
-require('../index.js');
+require('../platform/novel/index');
