@@ -5,6 +5,7 @@ var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
 var novelIndexListPageUrl = '/blog/pl/nv/novelIndexListPage';
 var novelRandomBooksUrl = '/blog/pl/nv/novelRandomBooks';
 var novelInfoByIdUrl = '/blog/pl/nv/novelById';
+var novelRecommendUrl = '/blog/pl/nv/recommendPage';
 
 var NOVEL_LOCAL_KEY='blog_touch_novel_history';
 
@@ -100,8 +101,16 @@ var commonUtil = {
         if(!callback)return;
         commonUtil._api(novelInfoByIdUrl,{
             id:id,
-            needAll:1,
+            needAll:1
         },function(code,des,data,res){
+            if(code==0){
+                callback(data);
+            }
+        });
+    },
+    giveMeRecommendData:function(callback){
+        if(!callback)return;
+        commonUtil._api(novelRecommendUrl,{},function(code,des,data,res){
             if(code==0){
                 callback(data);
             }
