@@ -1,16 +1,20 @@
 var commonUtil = require('../../util/commonUtil');
+var LoadingUtil = require('../../util/loadingUtil');
 var novelDetailRender = require('../../../../platform/novel/tpl/detailcontent.tpl');
 
 var novelDetail = {
     novelId:"",
     novelData:null,
     init:function(){
+        LoadingUtil.init();
         this.initPage();
         this.initListener();
     },
     initPage:function(){
         var _this = this;
+        LoadingUtil.show();
         this.initData(function(data){
+            LoadingUtil.hide();
             _this.renderPage(data);
         });
     },
@@ -28,7 +32,10 @@ var novelDetail = {
     renderPage:function(novelData){
         console.log(novelData);
         var html = novelDetailRender(novelData);
-        $("body").html(html);
+        $("#detailPage").html(html).show();
+        $("img").error(function(){
+            $(this).attr("src","http://www.37zw.com/d/image/3/3753/3753s.jpg");
+        });
     },
     initListener:function(){
         var _this = this;

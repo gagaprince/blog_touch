@@ -1,43 +1,7 @@
 @import "./base/base.less";
+@import "./base/common.less";
 html{
   font-size:10px;
-}
-.header{
-  background:#1ba9ba;
-  padding:10px 0;
-  position:relative;
-  .backFrame{
-    width: 41px;
-    height: 23px;
-    position: absolute;
-    .back{
-      position:absolute;
-      margin-left:13px;
-      .bg-frame,.front-frame{
-        width:14px;
-        height:14px;
-        background:#74fcfc;
-        .origin(0,0);
-        .skew(-4deg,-4deg);
-      }
-      .front-frame{
-        background:#1ba9ba;
-        position:absolute;
-        top:2px;
-        left:2px;
-      }
-      .origin(0,0);
-      .rotate(-45deg);
-      margin-top:11px;
-      z-index:1;
-    }
-  }
-  .title{
-    margin:-1px auto;
-    color:#fff;
-    font-size:1.8rem;
-  }
-
 }
 .container{
   width:100%;
@@ -82,7 +46,7 @@ html{
     .read-btn{
       width:90%;
       height: 40px;
-      background: #1ba9ba;
+      background: #fa6153;
       .bradius(5px);
       color: #fff;
       font-size: 16px;

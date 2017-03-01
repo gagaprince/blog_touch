@@ -4,18 +4,23 @@ var novelListRender = require('../../../../platform/novel/tpl/list-item.tpl');
 var timeout = null;
 var list = {
     currentPage:0,
+    cate:null,
     init:function(){
         this.initPage();
         this.initListener();
     },
     initPage:function(){
+        this.cate = commonUtil.getQueryString("cate")||"玄幻小说";
+        $(".title").html(this.cate);
+        $("title").html(this.cate);
         $("#novelList").html("");
         this.renderPage();
     },
     renderPage:function(){
         var _this = this;
         var currentPage = this.currentPage;
-        commonUtil.giveMeNovelListPage(currentPage,function(data){
+        var cate = this.cate;
+        commonUtil.giveMeNovelCateListPage(currentPage,cate,function(data){
             var novelList = data.novelList;
             var html = novelListRender(novelList);
             $("#novelList").append(html);
@@ -26,7 +31,7 @@ var list = {
         var _this = this;
         $("body").on("click",".novel-item",function(){
             var novelId = $(this).attr("novelId");
-            window.location.href = "indexlist.html?novelId="+novelId;
+            window.location.href = "detail.html?novelId="+novelId;
         });
         $(window).scroll(function() {
             if ($(window).scrollTop() >= $(document).height() - $(window).height()) {

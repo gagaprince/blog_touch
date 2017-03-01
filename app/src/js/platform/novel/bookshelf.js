@@ -25,6 +25,7 @@ var bookShelf = {
         });
         $("body").on("click",".bookAddBtn",function(){
             //跳转到列表页
+            window.location.href = "index.html";
         });
     },
     initBookList:function(callback){

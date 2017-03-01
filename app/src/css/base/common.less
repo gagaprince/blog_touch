@@ -1,12 +1,17 @@
 @import "./base.less";
 html{
   font-size:10px;
-  background: #c9cac7;
+  background: #fff;
+}
+#wxicon{
+  position:absolute;
+  left:-400px;
 }
 .header{
-  background:#1ba9ba;
+  background:#fa6153;
   padding:10px 0;
   position:relative;
+  height:20px;
   .backFrame{
     width: 41px;
     height: 23px;
@@ -17,12 +22,12 @@ html{
       .bg-frame,.front-frame{
         width:14px;
         height:14px;
-        background:#74fcfc;
+        background:#efefef;
         .origin(0,0);
         .skew(-4deg,-4deg);
       }
       .front-frame{
-        background:#1ba9ba;
+        background:#fa6153;
         position:absolute;
         top:2px;
         left:2px;
@@ -39,4 +44,49 @@ html{
     font-size:1.8rem;
   }
 
+}
+
+.loading-frame{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1000;
+  background:rgba(0,0,0,0.5);
+  .search-load{
+    height:45px;
+    .keyframes(my-dot-loading-animate,{
+    0% {
+      background:rgba(248,51,223,0.3);
+    }
+    25% {
+      background:rgba(248,51,223,0.6);
+    }
+    50% {
+      background:rgba(248,51,223,0.9);
+    }
+    75% {
+      background:rgba(248,51,223,0.6);
+    }
+    100% {
+      background:rgba(248,51,223,0.3);
+    }
+    });
+    .my-dot{
+      margin:8px;
+      .box(12px);
+      .bradius(50%);
+      background:rgba(248,51,223,0.3);
+    }
+    .my-dot:nth-child(3n){
+      .animation(my-dot-loading-animate,1s,ease,0.6s,infinite);
+    }
+    .my-dot:nth-child(3n-1){
+      .animation(my-dot-loading-animate,1s,ease,0.4s,infinite);
+    }
+    .my-dot:nth-child(3n-2){
+      .animation(my-dot-loading-animate,1s,ease,0s,infinite);
+    }
+  }
 }

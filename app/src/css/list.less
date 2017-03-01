@@ -5,14 +5,48 @@
   .list{
     width:100%;
     .item{
-      height:50px;
+      height:110px;
       position: relative;
       padding-left: 25px;
+      overflow:hidden;
       .half-border({
         left:0;
-        border-bottom:1px solid #1ba9ba;
+        border-bottom:1px solid #ccc;
         z-index: 1;
       });
+      .cover{
+        margin-top: 10px;
+        width:70px;
+        height: 87px;
+        background:#999;
+        .shadow(1px,1px,2px,#666);
+        overflow: hidden;
+        img{
+          display: block;
+          width:100%;
+        }
+      }
+      .desc-frame{
+        margin-top: 12px;
+        margin-left:10px;
+        font-size:1.4rem;
+        .info{
+          font-size:1.2rem;
+          .name{
+
+          }
+          .author{
+            font-size:1.1rem;
+            margin-left: 10px;
+            color:#ccc;
+          }
+        }
+        .desc{
+          margin-top: 8px;
+          width:65%;
+          color:#666;
+        }
+      }
       .novel-name{
         font-size:1.4rem;
       }
