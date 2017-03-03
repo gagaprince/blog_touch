@@ -1,5 +1,6 @@
 {{
-    var novelList = it;
+    var novelList = it.novelList;
+    var state = it.state;
     novelList.push({
        "tag":"jia"
     });
@@ -11,6 +12,7 @@
     {{?}}
     {{?novelItem.tag!="jia"}}
     <div class="book-frame h-c bookItem" onclick="" novelId="{{=novelItem.id}}">
+        <div class="remove-btn h-c" style="{{=state==1?'':'display:none;'}}" onclick="" novelId="{{=novelItem.id}}">+</div>
         <div class="book">
             <img src="{{=novelItem.cover?'http://www.37zw.com'+novelItem.cover:'http://www.37zw.com/d/image/3/3911/3911s.jpg'}}" alt=""/>
         </div>

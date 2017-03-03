@@ -5,6 +5,7 @@ var commonUtil = require('./commonUtil');
 
 var LOCAL_BOOK_LIST_KEY = "blog_touch_book_list";
 var LOCAL_NOVEL_TAG_KEY='blog_touch_novel_history';
+var LOCAL_INITBOOK_GET_KEY="blog_touch_novel_getinitbook";
 
 var bookshelfUtil = {
     getBookList:function(){
@@ -28,10 +29,18 @@ var bookshelfUtil = {
                 _this.addBook(data);
             });
         }else{
+            if(book.chapters){
+                //去除章节信息
+                var bookCp = commonUtil.clone(book);
+                bookCp.chapters = [];
+                book = bookCp;
+            }
             var bookList = this.getBookList();
             if(!this.isExistBookById(book,bookList)){
                 bookList.unshift(book);
                 this.saveBookList(bookList);
+            }else{
+                this.adjustTheFistBook(book.id);
             }
         }
 
@@ -64,6 +73,7 @@ var bookshelfUtil = {
             }
         }
         this.saveBookList(bookList);
+        this.removeBookTag(novelId);
     },
     adjustTheFistBook:function(novelId){
         var bookList = this.getBookList();
@@ -78,6 +88,12 @@ var bookshelfUtil = {
         this.saveBookList(bookList);
     },
 
+    setHasGetInitBook:function(){
+        StorageUtil.setItem(LOCAL_INITBOOK_GET_KEY,1);
+    },
+    isHasGetInitBook:function(){
+        return StorageUtil.getItem(LOCAL_INITBOOK_GET_KEY);
+    },
 
     //阅读记忆
     saveBookTag:function(novelId,chapter,pno) {
@@ -87,6 +103,15 @@ var bookshelfUtil = {
             //需要保存这本书
             this.addBook(novelId);
         }
+        var tag = [chapter, pno];
+        StorageUtil.setItem(LOCAL_NOVEL_TAG_KEY+"_"+novelId,tag);
+    },
+    getBookTag:function(novelId){
+        var tag = StorageUtil.getItem(LOCAL_NOVEL_TAG_KEY+"_"+novelId);
+        return tag;
+    },
+    removeBookTag:function(novelId){
+        StorageUtil.removeItem(LOCAL_NOVEL_TAG_KEY+"_"+novelId);
     }
 };
 module.exports = bookshelfUtil;

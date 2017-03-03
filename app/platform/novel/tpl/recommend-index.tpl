@@ -14,7 +14,7 @@
                 <div class="tj-frame-l h-u">
             {{?}}
                 <div class="tj-frame-item h-c linkbook" novelId="{{=item.id}}" onclick="">
-                    <div class="tj-item v-c linkbook" onclick="">
+                    <div class="tj-item v-c" onclick="">
                         <div class="cover">
                             <img src="http://www.37zw.com{{=item.cover}}" alt=""/>
                         </div>
@@ -43,7 +43,7 @@
             <div class="tj-frame-l h-u">
                 {{?}}
                 <div class="tj-frame-item h-c linkbook" novelId="{{=item.id}}" onclick="">
-                    <div class="tj-item v-c linkbook" onclick="">
+                    <div class="tj-item v-c" onclick="">
                         <div class="cover">
                             <img src="http://www.37zw.com{{=item.cover}}" alt=""/>
                         </div>
@@ -73,7 +73,7 @@
             <div class="tj-frame-l h-u">
                 {{?}}
                 <div class="tj-frame-item h-c linkbook" novelId="{{=item.id}}" onclick="">
-                    <div class="tj-item v-c linkbook" onclick="">
+                    <div class="tj-item v-c" onclick="">
                         <div class="cover">
                             <img src="http://www.37zw.com{{=item.cover}}" alt=""/>
                         </div>

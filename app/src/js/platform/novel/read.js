@@ -1,6 +1,7 @@
 "use strict";
 require('./lib/novelCanvas');
 var commonUtil = require('../../util/commonUtil');
+var bookshelfUtil = require('../../util/bookshelfUtil');
 
 var read = {
     novelId:140,
@@ -8,7 +9,7 @@ var read = {
         var _this = this;
         this.novelId = commonUtil.getQueryString("novelId")||this.novelId;
         var chapter = commonUtil.getQueryString("chapter");
-        var cpObj = commonUtil.getLocal(this.novelId)||[0,0];
+        var cpObj = bookshelfUtil.getBookTag(this.novelId)||[0,0];
         var currentPage = 0;
         if(chapter==null){
             //url参数没有chapter参数 查看local中有没有
@@ -21,6 +22,7 @@ var read = {
         }
         chapter = parseInt(chapter);
         this.initReader(chapter,currentPage);
+        bookshelfUtil.saveBookTag(this.novelId,chapter,currentPage);
     },
     initReader:function(chapter,currentPage){
         var _this = this;
@@ -56,7 +58,7 @@ var read = {
                 //可以记录自动书签
                 console.log("当前章节："+currentChapter+"  当前页码："+pno);
                 var novelId = commonUtil.getQueryString("novelId");
-                commonUtil.saveLocal(novelId,currentChapter,pno);
+                bookshelfUtil.saveBookTag(novelId,currentChapter,pno);
             }
         });
     },

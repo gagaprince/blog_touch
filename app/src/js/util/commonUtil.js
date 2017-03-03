@@ -154,6 +154,7 @@ var commonUtil = {
         this.initLocal();
         this.novelHistory[novelId] = [chapter, pno];
         localStorage.setItem(NOVEL_LOCAL_KEY,JSON.stringify(this.novelHistory));
+
     },
     getLocal:function(novelId){
         this.initLocal();

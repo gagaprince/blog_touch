@@ -1,6 +1,7 @@
 var commonUtil = require('../../util/commonUtil');
 var LoadingUtil = require('../../util/loadingUtil');
 var novelDetailRender = require('../../../../platform/novel/tpl/detailcontent.tpl');
+var bookshelfUtil = require('../../util/bookshelfUtil');
 
 var novelDetail = {
     novelId:"",
@@ -40,9 +41,11 @@ var novelDetail = {
     initListener:function(){
         var _this = this;
         $("body").on("click","#readBtn",function(){
+            bookshelfUtil.addBook(_this.novelData);
             window.location.href = "read.html?novelId="+_this.novelId;
         });
         $("body").on("click",".novel-index-item",function(){
+            bookshelfUtil.addBook(_this.novelData);
             var chapter = $(this).attr("chapter");
             window.location.href = "read.html?novelId="+_this.novelId+"&chapter="+chapter;
         });
