@@ -14,8 +14,8 @@
         {{
             var desc = novel.descripe.replace(/\w/g,"");
             if(desc){
-                if(desc.length>55){
-                    novel.descripe = desc.substr(0,55)+"...";
+                if(desc.length>45){
+                    novel.descripe = desc.substr(0,45)+"...";
                 }
             }
         }}
