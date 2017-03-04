@@ -40,6 +40,9 @@ var novelDetail = {
     },
     initListener:function(){
         var _this = this;
+        $("body").on("click",".backFrame",function(){
+            history.back();
+        });
         $("body").on("click","#readBtn",function(){
             bookshelfUtil.addBook(_this.novelData);
             window.location.href = "read.html?novelId="+_this.novelId;

@@ -29,6 +29,9 @@ var index = {
         });
     },
     initListener:function(){
+        $("body").on("click",".backFrame",function(){
+            history.back();
+        });
         $("body").on("click",".linkbook",function(){
             var novelId = $(this).attr("novelId");
             window.location.href = "detail.html?novelId="+novelId;
@@ -36,6 +39,12 @@ var index = {
         $("body").on("click",".cate",function(){
             var cate = $(this).html()+"小说";
             window.location.href = "list.html?cate="+cate;
+        });
+        $("body").on("click","#searchBtn",function(){
+            var key = $("#keyInput").val().trim();
+            if(key!=""){
+                window.location.href = "list.html?type=search&key="+key;
+            }
         });
     }
 };
