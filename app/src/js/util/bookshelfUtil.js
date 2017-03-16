@@ -43,7 +43,18 @@ var bookshelfUtil = {
                 this.adjustTheFistBook(book.id);
             }
         }
-
+    },
+    updateBook:function(book){
+        if(!book)return;
+        var bookList = this.getBookList();
+        for(var i=0;i<bookList.length;i++){
+            var bookIn = bookList[i];
+            if(bookIn.id == book.id){
+                bookList[i]=book;
+                break;
+            }
+        }
+        this.saveBookList(bookList);
     },
     isExistBookById:function(book,bookList){
         var isExist = false;

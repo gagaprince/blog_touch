@@ -6,6 +6,7 @@ var novelContentGetUrl = "/blog/pl/nv/getNovelContent";
 var novelIndexListPageUrl = '/blog/pl/nv/novelIndexListPage';
 var novelRandomBooksUrl = '/blog/pl/nv/novelRandomBooks';
 var novelInfoByIdUrl = '/blog/pl/nv/novelById';
+var novelsInfoByIdsUrl = '/blog/pl/nv/novelByIds';
 var novelRecommendUrl = '/blog/pl/nv/recommendPage';
 var novelSearchUrl = '/blog/pl/nv/novelSearchListPage'
 
@@ -120,6 +121,16 @@ var commonUtil = {
         if(!callback)return;
         commonUtil._api(novelInfoByIdUrl,{
             id:id
+        },function(code,des,data,res){
+            if(code==0){
+                callback(data);
+            }
+        });
+    },
+    giveMeNovelsByIds:function(ids,callback){
+        if(!callback)return;
+        commonUtil._api(novelsInfoByIdsUrl,{
+            ids:ids
         },function(code,des,data,res){
             if(code==0){
                 callback(data);

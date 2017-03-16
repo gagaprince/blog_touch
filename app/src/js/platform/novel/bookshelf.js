@@ -6,6 +6,8 @@ var defaultNum = 6;
 
 var bookShelf = {
     bookShelfState:0,//0正常状态，1 编辑状态
+    novelList:null,
+    updateMap:null,
     init:function(){
         this.initPage();
         this.initListener();
@@ -13,12 +15,71 @@ var bookShelf = {
     initPage:function(){
         var _this = this;
         this.initBookList(function(novelList){
+            _this.novelList = novelList;
             var renderObj = {
                 state:_this.bookShelfState,
                 novelList:_this.cloneNovelList(novelList)
             }
             _this.renderPage(renderObj);
+            _this.checkUpdate();
         });
+    },
+    checkUpdate:function(){
+        //检测更新情况
+        var _this = this;
+        var novelList = this.novelList;
+        var len = novelList.length;
+        var ids = "";
+        for(var i=0;i<len;i++){
+            var novel = novelList[i];
+            ids+=","+novel.id;
+        }
+        if(ids){
+            ids = ids.substring(1);
+        }
+        if(ids){
+            commonUtil.giveMeNovelsByIds(ids,function(data){
+                console.log(data);
+                _this.updateMap = _this._makeUpdateMap(data);
+                _this.renderUpdate();
+            });
+        }
+    },
+    _makeUpdateMap:function(novelList){
+        var novelMap = {};
+        var len = novelList.length;
+        for(var i=0;i<len;i++){
+            var novel = novelList[i];
+            var id = novel.id;
+            novelMap[id] = novel;
+        }
+        return novelMap;
+    },
+    renderUpdate:function(){
+        var novelList = this.novelList;
+        var updateMap = this.updateMap;
+        if(novelList&&updateMap&&novelList.length>0){
+            var len = novelList.length;
+            for(var i=0;i<len;i++){
+                var novel = novelList[i];
+                var id = novel.id;
+                var novelUpdate = updateMap[id];
+                if(novel.updateTime!=novelUpdate.updateTime){
+                    //更新了
+                    this.renderUpdateNovel(novel);
+                }
+            }
+        }
+    },
+    renderUpdateNovel:function(novel){
+        var id = novel.id;
+        $("#novel_"+id).find(".update").show();
+    },
+    updateBookShelfWidthNew:function(novelId){
+        var updateMap = this.updateMap;
+        var newNovel = updateMap[novelId];
+        bookshelfUtil.updateBook(newNovel);
+        $("#novel_"+novelId).find(".update").hide();
     },
     initListener:function(){
         var _this = this;
@@ -28,6 +89,8 @@ var bookShelf = {
             if(_this.bookShelfState==0){
                 var novelId = $(this).attr("novelId");
                 window.location.href = "detail.html?novelId="+novelId;
+                //更新bookshelf中的updateTime
+                _this.updateBookShelfWidthNew(novelId);
             }
         });
         $("body").on("click",".bookAddBtn",function(){
