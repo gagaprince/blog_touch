@@ -1,5 +1,6 @@
 "use strict";
 var gulp = require('gulp');
+var exec = require('child_process').exec;
 //var $ = require('gulp-load-plugins')(); //这个地方可以使用 $.less这种写法 代替 require引入 但是为了代码清晰 还是挨个 require
 var less = require('gulp-less');
 var cleanCss = require('gulp-clean-css');
@@ -19,9 +20,13 @@ var webpack = require('gulp-webpack');
 var gulpif = require('gulp-if');
 //var bower = require('gulp-bower');
 
+var serverOp = require('./appUtil/publishToServer');
+
 var conf = require('./confige/conf');
 
 var publishPath = conf.publishPath||'dist';
+var rmPublishPath = conf.rmPublishPath ||'./temp';
+var publishServerPath = conf.publishServerPath||__dirname;
 var devWebpackPath = conf.devWebpackPath||'dist_webpack';
 
 var currentPath = devWebpackPath;
@@ -167,3 +172,81 @@ gulp.task("publish_webpack",function(cb){
 gulp.task('serve',['publish_webpack','server_start','watch_dev']);
 
 gulp.task('default',['serve']);
+
+gulp.task('gitrm',function(cb){
+    exec('cd '+publishServerPath +' && git rm -rf '+rmPublishPath,function(err,stdout,stderr){
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    })
+});
+
+gulp.task('gitadd',function(cb){
+    exec('cd '+publishServerPath +' && git add .',function(err,stdout,stderr){
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    })
+});
+
+gulp.task('gitcommit',function(cb){
+    exec('cd '+publishServerPath +' && git commit -m "fe publish"',function(err,stdout,stderr){
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    })
+});
+gulp.task('gitpush',function(cb){
+    exec('cd '+publishServerPath +' && git push',function(err,stdout,stderr){
+        console.log(stdout);
+        console.log(stderr);
+        cb();
+    })
+});
+
+gulp.task("publish-git",function(cb){
+    sequence('gitrm','publish','gitadd','gitcommit','gitpush')(function(){
+        cb();
+    });
+});
+
+gulp.task('pushServer',function(cb){
+    serverOp.connectAndPull(function(){
+        cb();
+    })
+});
+
+gulp.task('pushServerRestart',function(cb){
+    serverOp.connectAndPullAndRestart(function(){
+        cb();
+    })
+});
+
+gulp.task("publish-fe",function(cb){
+    exec('git add .',function(err,stdout,stderr){
+        console.log(stdout);
+        console.log(stderr);
+        exec('git commit -m "fe gulp commit" ',function(err,stdout,stderr){
+            console.log(stdout);
+            console.log(stderr);
+            exec('git push ',function(err,stdout,stderr){
+                console.log(stdout);
+                console.log(stderr);
+                cb();
+            });
+        });
+
+    })
+});
+
+gulp.task("publish-server",function(cb){
+    sequence('publish-git','pushServer')(function(){
+        cb();
+    });
+});
+
+gulp.task("publish-server-r",function(cb){
+    sequence('publish-git','pushServerRestart')(function(){
+        cb();
+    });
+});

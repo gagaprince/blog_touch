@@ -1,7 +1,7 @@
 "use strict";
 
-var StorageUtil = require('./StorageUtil');
-var commonUtil = require('./commonUtil');
+var StorageUtil = require('./../../../util/StorageUtil');
+var commonUtil = require('./NovelCommonUtil');
 
 var LOCAL_BOOK_LIST_KEY = "blog_touch_book_list";
 var LOCAL_NOVEL_TAG_KEY='blog_touch_novel_history';

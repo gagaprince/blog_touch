@@ -1,4 +1,5 @@
 "use strict";
+
 var Img = require('./img');
 
 
@@ -6,11 +7,19 @@ var pullUtil = {
     imgs:null,//放置Imgs
     id:"",
     dom:null,
-    init:function(imgSrcList,id){
+    options:null,
+    init:function(imgSrcList,id,options){
         this.imgs = [];
         this.id = id;
         this.dom = $("#"+id);
+        this.initOptions(options);
         this.addImgs(imgSrcList);
+    },
+    initOptions:function(options){
+        this.options = $.extend({
+            width:80,//默认宽度80
+            distance:15//默认列间距15
+        },options);
     },
     createSuccessCall:function(num,imgList,loadComplete){
         return function(img,isSuccess){

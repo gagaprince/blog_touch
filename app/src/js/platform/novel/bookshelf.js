@@ -1,6 +1,6 @@
 "use strict";
-var commonUtil = require('../../util/commonUtil');
-var bookshelfUtil = require('../../util/bookshelfUtil');
+var commonUtil = require('./util/NovelCommonUtil');
+var bookshelfUtil = require('./util/bookshelfUtil');
 var bookshelfRender = require('../../../../platform/novel/tpl/bookshelf-list.tpl');
 var defaultNum = 6;
 

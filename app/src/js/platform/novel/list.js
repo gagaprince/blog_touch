@@ -1,5 +1,5 @@
 "use strict";
-var commonUtil = require('../../util/commonUtil');
+var commonUtil = require('./util/NovelCommonUtil');
 var novelListRender = require('../../../../platform/novel/tpl/list-item.tpl');
 var LoadingUtil = require('../../util/loadingUtil');
 var timeout = null;

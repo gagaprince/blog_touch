@@ -1,7 +1,7 @@
-var commonUtil = require('../../util/commonUtil');
+var commonUtil = require('./util/NovelCommonUtil');
 var LoadingUtil = require('../../util/loadingUtil');
 var novelDetailRender = require('../../../../platform/novel/tpl/detailcontent.tpl');
-var bookshelfUtil = require('../../util/bookshelfUtil');
+var bookshelfUtil = require('./util/bookshelfUtil');
 
 var novelDetail = {
     novelId:"",

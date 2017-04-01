@@ -1,5 +1,5 @@
 "use strict";
-var commonUtil = require('../../util/commonUtil');
+var commonUtil = require('./util/NovelCommonUtil');
 var indexRender = require('../../../../platform/novel/tpl/recommend-index.tpl');
 
 var index = {
