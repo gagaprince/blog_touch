@@ -205,7 +205,7 @@ gulp.task('gitpush',function(cb){
 });
 
 gulp.task("publish-git",function(cb){
-    sequence('gitrm','publish','gitadd','gitcommit','gitpush')(function(){
+    sequence('publish-fe','gitrm','publish','gitadd','gitcommit','gitpush')(function(){
         cb();
     });
 });
