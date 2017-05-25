@@ -22,7 +22,7 @@ var base64Page = {
                     commonUtil._api(transLoadUrl,{
                         photoUrl:img
                     },function(code,des,data,res){
-                        console.log(res);
+//                        console.log(res);
                         if(code==0){
                             var domainImg = data;
                             _this.createBase64Img(domainImg);
