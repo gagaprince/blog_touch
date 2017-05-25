@@ -1,0 +1,1 @@
+require('../platform/photo/base64Trans.js');
