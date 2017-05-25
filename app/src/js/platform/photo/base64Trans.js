@@ -3,6 +3,8 @@
 var commonUtil = require('./util/commonUtil');
 var transLoadUrl = "/blog/pl/mm/base64LoadTrans";
 
+var timeout = null;
+
 var base64Page = {
     init:function(){
         this.initListener();
@@ -10,22 +12,29 @@ var base64Page = {
     initListener:function(){
         var _this = this;
         $("#transBtn").on("click",function(){
-            var img = $("#imgUrl").val().trim();
-            if(img){
-                commonUtil._api(transLoadUrl,{
-                    photoUrl:img
-                },function(code,des,data,res){
-                    console.log(res);
-                    if(code==0){
-                        var domainImg = data;
-                        _this.createBase64Img(domainImg);
-                    }
-                })
-                /*_this.createBase64Img({
-                    url:img,
-                    ext:"png" //跨域不行
-                });*/
+            if(timeout){
+                clearTimeout(timeout);
+                timeout = null;
             }
+            timeout = setTimeout(function(){
+                var img = $("#imgUrl").val().trim();
+                if(img){
+                    commonUtil._api(transLoadUrl,{
+                        photoUrl:img
+                    },function(code,des,data,res){
+                        console.log(res);
+                        if(code==0){
+                            var domainImg = data;
+                            _this.createBase64Img(domainImg);
+                        }
+                        timeout = null;
+                    });
+                    /*_this.createBase64Img({
+                     url:img,
+                     ext:"png" //跨域不行
+                     });*/
+                }
+            },300);
         });
     },
     createBase64Img:function(urlObj){
