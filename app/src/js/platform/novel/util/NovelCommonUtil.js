@@ -20,7 +20,7 @@ var commonUtil = {
             data:data,
             type : 'POST',
             dataType : 'json',
-            timeout : 3e4,
+            timeout : 1e5,
             success:function(res){
                 if(typeof res=="string"){
                     res = JSON.parse(res);
@@ -28,7 +28,7 @@ var commonUtil = {
                 console.log(res);
                 var status = res.status;
                 if(callback){
-                    callback(status.code,status.des,res.data,res);
+                    callback(status && status.code,status && status.des,res.data,res);
                 }
             }
         });
