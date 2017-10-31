@@ -8,10 +8,10 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "gulp": "^3.9.1"
-  },
   "devDependencies": {
+    "babel-core": "^5.x",
+    "babel-loader": "5.4.1",
+    "babel-preset-latest": "^6.x",
     "del": "^2.2.2",
     "dot-loader": "^0.1.1",
     "gulp": "^3.9.1",

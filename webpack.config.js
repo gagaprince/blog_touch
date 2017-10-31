@@ -27,6 +27,15 @@ module.exports = {
                 loader: "style!css"
             },
             {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                // loaders: ['babel?cacheDirectory=false,presets[]=es2015,presets[]=stage-0'],
+                option: {
+                    'presets': ['latest'],
+                },
+                exclude: /node_modules/
+            },
+            {
                 test: /\.tpl?$/,
                 loader: "dot"
             },
