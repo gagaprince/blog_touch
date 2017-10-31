@@ -1,15 +1,21 @@
 import photoUtil from './util/photoUtil';
+import game from './game';
 
 let faceBlind = {
     init () {
+        this.showLoading();
         photoUtil.init().then(()=>{
-            let topPeople = photoUtil.giveMeTheTopHead();
-            console.log('选出的标杆是:');
-            console.log(topPeople);
-            let results = photoUtil.giveMeTheResultList(topPeople,9);
-            console.log('选出的答案选项:');
-            console.log(results);
+            game.init();
+            this.hideLoading();
         });
+    },
+    showLoading(){
+        $('#loading').show();
+        $('#gameStart').hide();
+    },
+    hideLoading(){
+        $('#loading').hide();
+        $('#gameStart').show();
     }
 };
 

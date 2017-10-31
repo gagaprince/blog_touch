@@ -2,5 +2,181 @@
 @import "../base/common.less";
 
 body{
+  .game-start{
+    position: relative;
+    .up-frame{
+      width:100%;
+      height:160px;
+      background: #2b508e;
+      .up{
+        overflow: hidden;
+        width:100%;
+        height: 160px;
+        position: relative;
+        .label{
+          font-size: 30px;
+          font-weight: bold;
+          margin: 30px 0 0 30px;
+          color: #fff;
+        }
+        .time{
+          font-size: 24px;
+          margin:10px 0 0 40px;
+          color: #fff;
+        }
+        .top-img{
+          position: absolute;
+          right: 20px;
+          top:20px ;
+          width:120px;
+          height:120px;
+          border-radius: 5px;
+          overflow: hidden;
+          img {
+            display: block;
+            width:100%;
+          }
+        }
+      }
+    }
+    .content{
+      height:450px;
+      background: #1a63a7;
+      display: flex;
+      justify-content: center;
+      .result-imgs{
+        width:330px;
+        height:330px;
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        .img-frame{
+          position: relative;
+          width:165px;
+          height:165px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+            display: block;
+            width:90%;
+          }
+          .cha{
+            position: absolute;
+          }
+          .error{
+            border: 2px solid red;
+          }
+          .right{
+            border: 2px solid green;
+          }
+        }
+      }
+    }
+    .game-pre,.game-over{
+      position: absolute;
+      top:0;
+      bottom: 0;
+      right: 0;
+      left: 0;
 
+      width:300px;
+      height: 400px;
+      margin:auto;
+      background-image:-webkit-linear-gradient(to top, #2c6bdf,#1ee6ff);
+      background-image:linear-gradient(to top,#2c6bdf, #1ee6ff);
+
+      border-radius: 10px;
+
+      .header-title{
+        color: #fff;
+        font-size: 28px;
+        height: 100px;
+      }
+      .desc{
+        color: #fff;
+        font-size: 20px;
+        margin-top: 20px;
+        .rule-title{
+          margin-left:30px;
+        }
+        .rule{
+          font-size: 16px;
+          width:250px;
+          margin-left:30px;
+        }
+      }
+      .begin{
+        position: absolute;
+        width:100%;
+        bottom: 60px;
+        .btn{
+          width:160px;
+          height:50px;
+          border-radius: 10px;
+          background-image:-webkit-linear-gradient(to top, #2c6bdf,#1ee6ff);
+          background-image:linear-gradient(to top,#2c6bdf, #1ee6ff);
+          color: #fff;
+          font-size: 18px;
+        }
+      }
+      .over{
+        bottom: 30px;
+      }
+      .qrimg{
+        width:100%;
+        height: 100px;
+        img{
+          width:100px;
+          display: block;
+        }
+      }
+    }
+  }
+  .loading{
+    .spinner {
+      margin: 200px auto ;
+      width: 150px;
+      text-align: center;
+    }
+
+    .spinner > div {
+      width: 30px;
+      height: 30px;
+      background-color: #67CF22;
+
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+      animation: bouncedelay 1.4s infinite ease-in-out;
+      /* Prevent first frame from flickering when animation starts */
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    .spinner .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+
+    .spinner .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
+
+    @-webkit-keyframes bouncedelay {
+      0%, 80%, 100% { -webkit-transform: scale(0.0) }
+      40% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes bouncedelay {
+      0%, 80%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+      } 40% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+        }
+    }
+  }
 }
