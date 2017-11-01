@@ -41,6 +41,7 @@ export default {
     },
     resetLevel(){
         this.currentLevel=1;
+        this.renderLevel();
     },
     refreshTime(){
         this.nowTime = 30;
@@ -74,9 +75,9 @@ export default {
         $('#gameStart').find('.result-imgs').html('');
         this.randomResult(results);
         results.forEach((item,index)=>{
-            let itemImg = `<div class="img-frame" peopleId="${item.peopleId}" style="width:${330/wNum}px;height:${330/wNum}px;">
+            let itemImg = `<div class="img-frame" peopleId="${item.peopleId}" onclick="" style="width:${330/wNum}px;height:${330/wNum}px;">
                             <img class="cha" style="display: none;" src="http://p1.meituan.net/codeman/1682bc6167be5d8e3ddc69d984927cfd43141.png" alt="">
-                            <img src="${item.peopleHead}" alt="">
+                            <img class="mv" src="${item.peopleHead}" alt="">
                           </div>`;
             $('#gameStart').find('.result-imgs').append(itemImg);
         });
@@ -118,12 +119,12 @@ export default {
         $('#gameStart').on('click','.img-frame',function(){
             let peopleId = $(this).attr('peopleId');
             if(peopleId==_this.topPeople.peopleId){
-                $(this).find('img').addClass('right');
+                $(this).find('.mv').addClass('right');
                 _this.levelPlus();
 
             }else{
                 _this.speedLowTime();
-                $(this).find('img').addClass('error');
+                $(this).find('.mv').addClass('error');
                 $(this).find('.cha').show();
             }
         });
