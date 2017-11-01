@@ -116,7 +116,7 @@ export default {
             this.gameBegin();
         });
         let _this = this;
-        $('#gameStart').on('click','.img-frame',function(){
+        $('#gameStart').on('tap','.img-frame',function(){
             let peopleId = $(this).attr('peopleId');
             if(peopleId==_this.topPeople.peopleId){
                 $(this).find('.mv').addClass('right');
