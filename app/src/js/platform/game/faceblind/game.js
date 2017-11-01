@@ -127,6 +127,7 @@ export default {
                 $(this).find('.mv').addClass('error');
                 $(this).find('.cha').show();
             }
+            return false;
         });
     }
 }
