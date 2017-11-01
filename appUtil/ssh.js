@@ -24,6 +24,7 @@ sshUtil.prototype.connect = function(server, then) {
             then();
     }).on('error', function(err){
         console.log(server['host'] + ' error.');
+        console.log(err);
     }).on('close', function(had_error){
         console.log(server['host'] + ' close.');
     }).connect(server);

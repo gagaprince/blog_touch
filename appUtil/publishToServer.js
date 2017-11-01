@@ -47,7 +47,7 @@ var serverOp = {
     },
     restart:function(){
         return new Promise(function(resolve, reject) {
-            ssh.exec('source /etc/profile && echo $PATH && sh /root/gagaTest/sharetab/restart_blog.sh > /root/work/blog/nohup.out 2>&1',function(err,data){
+            ssh.exec('source /etc/profile && echo $PATH && sh /root/work/blog/build/deploy.sh > /root/work/blog/nohup.out 2>&1',function(err,data){
                 if (err) {
                     console.log(err);
                 } else {
