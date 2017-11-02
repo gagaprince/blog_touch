@@ -1,4 +1,3 @@
-
 const headPic = 'https://as.alipayobjects.com/g/bisbiz-fe/mark-game/0.0.4/images/head/';
 const photoMap = [
             //1-5

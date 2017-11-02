@@ -30,8 +30,19 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 // loaders: ['babel?cacheDirectory=false,presets[]=es2015,presets[]=stage-0'],
-                option: {
-                    'presets': ['es2015'],
+                query: {
+                    presets: [
+                        ["env",
+                            {
+                                "targets": {
+                                    "browsers": ["last 2 versions", "safari > 7"]
+                                }
+                            }
+                        ]
+                    ],
+                    plugins:[
+                        'transform-runtime'
+                    ]
                 },
                 exclude: /node_modules/
             },
