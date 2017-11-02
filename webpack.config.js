@@ -31,7 +31,7 @@ module.exports = {
                 loader: 'babel-loader',
                 // loaders: ['babel?cacheDirectory=false,presets[]=es2015,presets[]=stage-0'],
                 option: {
-                    'presets': ['latest'],
+                    'presets': ['es2015'],
                 },
                 exclude: /node_modules/
             },
